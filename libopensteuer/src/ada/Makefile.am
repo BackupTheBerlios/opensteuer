@@ -1,23 +1,25 @@
 # The targets in this directory
-lib_LTLIBRARIES = libopensteuer.la
+lib_LIBRARIES = libopensteuer.a
+LIBBASENAME = libopensteuer
+all: $(lib_LIBRARIES) $(LIBSONAME)
+
+# Name conventions for the shared library
+LIBSONAME = $(LIBBASENAME).so
+LIBSONAMEVERSION = $(LIBSONAME).@OPENSTEUER_SO_VERSION@
+LIBSONAMEFULL = $(LIBSONAMEVERSION).@OPENSTEUER_SO_MINOR@.@OPENSTEUER_SO_REVISION@
 
 # These are the source files that the static library depends on.
 libopensteuer_a_SOURCES = \
+ libopensteuer.adb \
  libopensteuer-esttab.adb \
  libopensteuer-lsttab.adb \
- libopensteuer-pap.adb \
- libopensteuer.adb 
-
-# And these are the source files for the shared library.
-libopensteuer_la_SOURCES = \
- $(libopensteuer_a_SOURCES) \
- b~libopensteuer.adb
+ libopensteuer-pap.adb 
 
 # These are the header files (in case of ada: spec *and* body files)
 # that are required for programs that want to use the
-# library, i.e. these get installed. The prefix 'pkginclude' means
-# these will be installed in $prefix/include/libopensteuer.
-pkginclude_HEADERS = \
+# library, i.e. these get installed. 
+iheaderdir=${includedir}/opensteuer
+iheader_HEADERS = \
  $(libopensteuer_a_SOURCES) \
  libopensteuer-esttab.ads \
  libopensteuer-global.ads \
@@ -26,37 +28,74 @@ pkginclude_HEADERS = \
  libopensteuer.ads \
  libopensteuer.h
 
-# Additional flags for linking the shared library can go here
-libopensteuer_la_LIBADD =
-#libopensteuer_la_LIBADD = -lgnat <-- will be required by each executable :-(
-libopensteuer_la_LDFLAGS= -version-info \
-  @OPENSTEUER_SO_VERSION@:@OPENSTEUER_SO_REVISION@:@OPENSTEUER_SO_AGE@
-
 # Additional files to be removed by 'make clean'
-CLEANFILES = *.ali b~*.ad?
+CLEANFILES = *.ali b~*.ad? lib*.so*
 
 # ############################################################
 # Hopefully the rules below don't have to be touched anymore.
 
-# Command for linking the shared library
-LINK = $(LIBTOOL) --mode=link $(GNATGCC) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+# This is the rule for building the shared library. For simplicity,
+# let the static library be built first.
+$(LIBSONAME): $(lib_LIBRARIES)
+	$(GNATGCC) -shared $(AM_LDFLAGS) $(LDFLAGS) \
+	 -o $(LIBSONAMEFULL) \
+	 -Wl,-soname -Wl,$(LIBSONAME) \
+	 *.o
+	rm -f $(LIBSONAMEVERSION) $(LIBSONAME)
+	$(CP_S) $(LIBSONAMEFULL) $(LIBSONAMEVERSION)
+	$(CP_S) $(LIBSONAMEFULL) $(LIBSONAME)
 
-SUFFIXES = .adb .lo
+# Rules for installing and uninstalling the shared library.
+.PHONY: install-LIBBASENAME-so uninstall-LIBBASENAME-so
+install-LIBBASENAME-so: $(LIBSONAME)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(libdir)
+	$(libLIBRARIES_INSTALL) $(LIBSONAMEFULL) $(DESTDIR)$(libdir)/$(LIBSONAMEFULL); \
+	cd $(DESTDIR)$(libdir); \
+	rm -f $(LIBSONAMEVERSION) $(LIBSONAME); \
+	$(CP_S) $(LIBSONAMEFULL) $(LIBSONAMEVERSION); \
+	$(CP_S) $(LIBSONAMEFULL) $(LIBSONAME) 
+	@$(POST_INSTALL)
+uninstall-LIBBASENAME-so:
+	@$(NORMAL_UNINSTALL)
+	rm -f $(DESTDIR)$(libdir)/$(LIBSONAME)
+	rm -f $(DESTDIR)$(libdir)/$(LIBSONAMEVERSION)
+	rm -f $(DESTDIR)$(libdir)/$(LIBSONAMEFULL)
+install: install-am install-LIBBASENAME-so 
+uninstall: uninstall-am uninstall-LIBBASENAME-so
+
+# The static library gets built by automake's rules. Alternatively,
+# something like this would be used:
+#libopensteuer.a: $(libopensteuer_a_SOURCES)
+#	LIBBASENAME=$(patsubst %.a,%,$@) && \
+#		gnatmake $${LIBBASENAME} -c -fPIC -m
+
+SUFFIXES = .adb .o
 # Extra suffix rule so that automake knows how .adb (ada) files are
 # being compiled to (libtool) object files via libtool.
-.adb.lo:
-	$(LIBTOOL) --mode=compile $(GNATGCC) $(AM_CFLAGS) $(CFLAGS) \
-	  -c -o $@ $< 
-
+.adb.o:
+	LIBBASENAME=$(patsubst %.o,%,$@) && \
+		gnatmake $${LIBBASENAME} -c -fPIC -m
 
 # Extra rule for building the code with the library elaboration
 # procedure (named `<prefix>init') and the run-time finalization
 # procedure (named `<prefix>final').
-b~%.adb : %.adb ; 
-	LIBBASENAME=$(patsubst %.adb,%,$<) && \
-		gnatbind -L$${LIBBASENAME} $${LIBBASENAME}
+#b~$(LIBBASENAME).adb: $(LIBBASENAME).adb
+#	gnatbind -L$(LIBBASENAME) $(LIBBASENAME)
 
-# Duplicate this rule verbosely for older automake
-b~libopensteuer.adb: libopensteuer.adb
-	LIBBASENAME=libopensteuer && \
-		gnatbind -L$${LIBBASENAME} $${LIBBASENAME}
+
+# Old rules for libtool:
+
+#SUFFIXES = .adb .lo
+#.adb.o:
+#	$(LIBTOOL) --mode=compile $(GNATGCC) $(AM_CFLAGS) $(CFLAGS) \
+#	  -c -o $@ $< 
+
+# Command for linking the shared library
+#LINK = $(LIBTOOL) --mode=link $(GNATGCC) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+
+# And these are the source files for the shared library.
+#libopensteuer_la_SOURCES = \
+# $(libopensteuer_a_SOURCES) \
+# b~libopensteuer.adb
+

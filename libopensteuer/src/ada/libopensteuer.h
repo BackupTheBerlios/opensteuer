@@ -23,10 +23,10 @@
 
 /* The library elaboration procedure. The implementation for this is
    created by running 'gnatbind -Llibopensteuer libopensteuer' */
-extern void libopensteuerinit (void);
+/*extern void libopensteuerinit (void);*/
           
 /* The library finalization procedure. */
-extern void libopensteuerfinal (void);
+/*extern void libopensteuerfinal (void);*/
 
 /* Type definitions. Only pointers to these types are used. */
 typedef struct Est_Eingabe Est_Eingabe;

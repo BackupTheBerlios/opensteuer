@@ -4,7 +4,7 @@ MAIN = test_libopensteuer
 #LIBOPENSTEUER_DIR = /usr/local/include/libopensteuer
 LIBOPENSTEUER_DIR = ../libopensteuer/src/ada
 OST_INCLUDES = $(LIBOPENSTEUER_DIR)
-LIBOPENSTEUER_LIBDIR = $(LIBOPENSTEUER_DIR)/.libs
+LIBOPENSTEUER_LIBDIR = $(LIBOPENSTEUER_DIR)
 
 .PHONY : all
 all : test testc

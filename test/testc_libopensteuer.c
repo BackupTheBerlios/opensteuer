@@ -17,7 +17,7 @@ int main(int argc, char **argv)
   }
 
   /* Init library */
-  libopensteuerinit();
+  /*libopensteuerinit();*/
   eingabe = LibOpenSteuer_Est_Eingabe_New();
   ausgabe = LibOpenSteuer_Est_Ausgabe_New();
   lstein =  LibOpenSteuer_Lst_Eingabe_New();
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     };
 
   /* Clean up library */
-  libopensteuerfinal();
+  /*libopensteuerfinal();*/
 
   return 0;
 }
