@@ -58,5 +58,5 @@ b~%.adb : %.adb ;
 
 # Duplicate this rule verbosely for older automake
 b~libopensteuer.adb: libopensteuer.adb
-	LIBBASENAME=$(patsubst %.adb,%,$<) && \
+	LIBBASENAME=libopensteuer && \
 		gnatbind -L$${LIBBASENAME} $${LIBBASENAME}
