@@ -10,8 +10,7 @@ libopensteuer_a_SOURCES = \
 
 # And these are the source files for the shared library.
 libopensteuer_la_SOURCES = \
- $(libopensteuer_a_SOURCES) 
-nodist_libopensteuer_la_SOURCES = \
+ $(libopensteuer_a_SOURCES) \
  b~libopensteuer.adb
 
 # These are the header files (in case of ada: spec *and* body files)
