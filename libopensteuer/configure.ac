@@ -67,6 +67,25 @@ AC_CHECK_PROG(GNATGCC, gnatgcc, gnatgcc, "$CC")
 dnl Add extra configure switches for enabling of compile warnings.
 ACX_COMPILE_WARN
 
+dnl Look for libgnat.a
+AC_MSG_CHECKING(for static library libgnat.a)
+GNATLS=gnatls
+LIBGNAT=""
+AC_ARG_WITH(libgnat,
+  [  --with-libgnat=LIBRARY fully qualified path to libgnat.a ],
+  [LIBGNAT="$withval"],
+  [ for A in `$GNATLS -v`; do
+	if test -d $A; then
+	    if test -r $A/libgnat.a; then
+		LIBGNAT=$A/libgnat.a
+	    fi
+	fi
+    done 
+])
+LIBGNAT=`echo $LIBGNAT|sed -e 's!//!/!g'`
+AC_MSG_RESULT($LIBGNAT)
+AC_SUBST(LIBGNAT)
+
 ### -------------------------------------------------------------
 ### Output files
 ### -------------------------------------------------------------

@@ -18,7 +18,7 @@ libopensteuer_a_SOURCES = \
 # These are the header files (in case of ada: spec *and* body files)
 # that are required for programs that want to use the
 # library, i.e. these get installed. 
-iheaderdir=${includedir}/opensteuer
+iheaderdir = $(includedir)/opensteuer
 iheader_HEADERS = \
  $(libopensteuer_a_SOURCES) \
  libopensteuer-esttab.ads \
@@ -36,11 +36,12 @@ CLEANFILES = *.ali b~*.ad? lib*.so*
 
 # This is the rule for building the shared library. For simplicity,
 # let the static library be built first.
+# Statically link the libgnat.a to the shared library
 $(LIBSONAME): $(lib_LIBRARIES)
 	$(GNATGCC) -shared $(AM_LDFLAGS) $(LDFLAGS) \
 	 -o $(LIBSONAMEFULL) \
 	 -Wl,-soname -Wl,$(LIBSONAME) \
-	 *.o
+	 *.o $(LIBGNAT)
 	rm -f $(LIBSONAMEVERSION) $(LIBSONAME)
 	$(CP_S) $(LIBSONAMEFULL) $(LIBSONAMEVERSION)
 	$(CP_S) $(LIBSONAMEFULL) $(LIBSONAME)

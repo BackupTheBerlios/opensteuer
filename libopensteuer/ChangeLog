@@ -1,3 +1,8 @@
+2003-12-20  Christian Stimming  <stimming@tuhh.de>
+
+	* configure.ac: Add code and optional argument for locating
+	libgnat.a.
+
 2003-12-17  Christian Stimming  <stimming@tuhh.de>
 
 	* src/ada/Makefile.am: Remove libtool. Add build rules for shared
