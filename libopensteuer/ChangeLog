@@ -5,9 +5,7 @@
 	now available. However, compiling and installing the correct
 	object files seems to be not so trivial. So far only "make test"
 	with one python module is implemented. The include path for python
-	is auto-detected by configure. TODO: If there is no python, then
-	the python code shouldn't be compiled, but currently this would
-	probably give an error.
+	is auto-detected by configure. 
 
 2003-12-20  Christian Stimming  <stimming@tuhh.de>
 

@@ -91,14 +91,17 @@ AC_CHECK_PROG(PYTHON, python, python, "")
 AC_MSG_CHECKING([for python include arguments])
 PYTHON_INCLUDES=""
 PYTHON_LIBDIR=""
+SWIG_SRCDIR=""
 if test -n $PYTHON; then
    pythoninc_dir=`echo -e "from distutils.sysconfig import get_python_inc\nprint get_python_inc()\n" | $PYTHON `
    PYTHON_INCLUDES="-I$pythoninc_dir"
    PYTHON_LIBDIR=`echo -e "from distutils.sysconfig import get_python_lib\nprint get_python_lib()\n" | $PYTHON `
+   SWIG_SRCDIR="swig"
 fi
 AC_MSG_RESULT($PYTHON_INCLUDES)
 AC_SUBST(PYTHON_INCLUDES)
 AC_SUBST(PYTHON_LIBDIR)
+AC_SUBST(SWIG_SRCDIR)
 
 ### -------------------------------------------------------------
 ### Output files
