@@ -41,15 +41,22 @@ CLEANFILES = *.ali b~*.ad?
 # Command for linking the shared library
 LINK = $(LIBTOOL) --mode=link $(GNATGCC) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 
+SUFFIXES = .adb .lo
 # Extra suffix rule so that automake knows how .adb (ada) files are
 # being compiled to (libtool) object files via libtool.
 .adb.lo:
 	$(LIBTOOL) --mode=compile $(GNATGCC) $(AM_CFLAGS) $(CFLAGS) \
 	  -c -o $@ $< 
 
+
 # Extra rule for building the code with the library elaboration
 # procedure (named `<prefix>init') and the run-time finalization
 # procedure (named `<prefix>final').
 b~%.adb : %.adb ; 
+	LIBBASENAME=$(patsubst %.adb,%,$<) && \
+		gnatbind -L$${LIBBASENAME} $${LIBBASENAME}
+
+# Duplicate this rule verbosely for older automake
+b~libopensteuer.adb: libopensteuer.adb
 	LIBBASENAME=$(patsubst %.adb,%,$<) && \
 		gnatbind -L$${LIBBASENAME} $${LIBBASENAME}
