@@ -1,18 +1,17 @@
-# ------------------------------------------------------------------
+####################################################################
 # LibOpenSteuer - An open-source taxlibrary based on german tax laws
-# ------------------------------------------------------------------
+####################################################################
 
 # This is the Makefile for the Ada-source.
 
-# ------------------------------------------------------------------
+####################################################################
 # Don't make any changes here until you know what you're doing.
 # Changes should only be made to the Makefile in the main dir.
-# ------------------------------------------------------------------
 # Don't compile directly from here. Paths will probably be wrong.
 # Use the Makefile in the main directory for compiling/installation.
-# ------------------------------------------------------------------
+####################################################################
 
-# Filenames:
+# Files:
 
 MAIN = libopensteuer
 SOURCE = *.ad[bs] *.h
@@ -25,13 +24,13 @@ ALL_LIBS = $(SHARED) $(SHARED_API) $(SHARED_VERSION) $(STATIC)
 
 # Error-Text:
 
-ERR = not set.  Run make from the main directory
+ERR_TEXT = not set.  Run make from the main directory
 
 # Compile:
 
-.PHONY: all
-all:
-	gnatmake $(MAIN) -c -fPIC -m -O3
+.PHONY: default
+default:
+	gnatmake $(MAIN) -c -fPIC -m -O3 -largs
 
 .PHONY: debug
 debug:
@@ -41,27 +40,20 @@ debug:
 devel:
 	gnatmake $(MAIN) -c -fPIC -gnatafo -m
 
-# Generate $(MAIN).h:
-
-.PHONY: h
-h:
-	gnatmake make_h.adb
-	./make_h
-
 # Build the library:
 
 .PHONY: shared
-shared: all
+shared: default
 ifndef API
-	$(error 'API' $(ERR))
+	$(error 'API' $(ERR_TEXT))
 endif
 ifndef VERSION
-	$(error 'VERSION' $(ERR))
+	$(error 'VERSION' $(ERR_TEXT))
 endif
 	$(CC) -shared -Wl,-soname,$(SHARED_API) -o $(SHARED_VERSION) *.o
 
 .PHONY: static
-static: all
+static: default
 	ar rc $(STATIC) $(MAIN).o
 
 # Install:
@@ -69,10 +61,10 @@ static: all
 .PHONY: install
 install:
 ifndef LIB_DIR
-	$(error 'LIB_DIR' $(ERR))
+	$(error 'LIB_DIR' $(ERR_TEXT))
 endif
 ifndef INCLUDE_DIR
-	$(error 'INCLUDE_DIR' $(ERR))
+	$(error 'INCLUDE_DIR' $(ERR_TEXT))
 endif
 	@if ! [ -d $(LIB_DIR) ]; then \
 		$(INSTALL) -d -m 755 $(LIB_DIR); \
@@ -107,4 +99,4 @@ uninstall:
 
 .PHONY: clean
 clean:
-	$(RM) $(MAIN) $(SHARED)* $(STATIC) *.ali *.o *.h *~
+	$(RM) $(MAIN) $(SHARED)* $(STATIC) *.ali *.o b~*.ad[bs] *~ make_h

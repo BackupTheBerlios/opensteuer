@@ -1,0 +1,89 @@
+====================================================================
+ LibOpenSteuer - An open-source taxlibrary based on german tax laws
+====================================================================
+
+
+Requirements:
+=============
+
+Unlike most other software, this library is not written in C or C++,
+but in Ada. For an overview what Ada is, have a look at the file Ada95
+in Documentation (sorry, currently only in german, but the links refer
+mostly to sites written in english).
+
+To compile the source you need an Ada-compiler, for instance GNAT.
+Normally it is part of a Linux-distribution.  If not, you can get it
+here: <http://libre.act-europe.fr>.
+
+You also need the following tools: make, install, rmdir, ldconfig, ln
+and ranlib (the least only for static libs).
+
+
+Compiling and installation:
+===========================
+
+libopensteuer uses a traditional Makefile.  $SHELL is /bin/sh.  The
+default installation-dir is /usr/local.  Have a look at the main
+Makefile if you want to change anything.
+
+Note:
+Always call make from the main directory!  Don't use the Makefiles in
+the subdirs until you know what you're doing!
+
+The make-options are:
+
+make
+make default
+	Compile the library with optimization.
+
+make debug
+	Compile the library with debugging options.
+
+make devel
+	Compile the library with useful options for development.
+
+make shared
+	Build a shared library.
+
+make static
+	Build a static library.
+
+make install
+	Install the library, the source, and the documentation.
+	Perhaps you need to be root for that.  If you didn't run
+	`make shared' or `make static' before, no library will be
+	created or installed, just the source and the documentation.
+
+make uninstall
+	Uninstall everything installed with make install.
+
+make check
+make test
+	Run test-programs for Ada and C.  The library must have been
+	installed before!  These test-programs are also a demonstration
+	how to use libopensteuer.
+
+make clean
+	Clean the source-dir from all object-files, etc.
+
+Example: `make shared install' will compile (if not already compiled),
+built a shared library and install it.
+
+
+Disclaimer:
+===========
+
+This software is free software.  It is distributed in the hope that
+it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Use
+of this software is at your own risk.
+
+See the GNU General Public License for more details.
+   
+You should have received a copy of the GNU General Public License 
+along with LibOpenSteuer; see file COPYING.  If not, write to the
+
+  Free Software Foundation, Inc.
+  59 Temple Place, Suite 330 
+  Boston, MA 02111-1307
+  USA 

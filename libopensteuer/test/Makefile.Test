@@ -1,0 +1,31 @@
+####################################################################
+# LibOpenSteuer - An open-source taxlibrary based on german tax laws
+####################################################################
+
+# This is the Makefile for the test-programs.
+
+SHELL = /bin/sh
+
+INCLUDE_DIR = /usr/local/include/opensteuer
+LIB_DIR = /usr/local/lib
+
+.PHONY: check test
+check test: test_ada test_c
+	./test_ada
+	./test_c
+
+.PHONY: test_ada
+test_ada:
+	gnatmake -I$(INCLUDE_DIR) test_ada -largs -lopensteuer
+
+.PHONY: test_c
+test_c:
+	gcc -Wall -o test_c test_c.c -I$(INCLUDE_DIR) -lopensteuer -lgnat
+
+.PHONY: indent
+indent:
+	indent -kri4 test_c.c
+
+.PHONY: clean
+clean: 
+	$(RM) *.o *.ali *~ test_ada test_c

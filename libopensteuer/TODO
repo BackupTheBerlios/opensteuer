@@ -1,11 +1,9 @@
-Das ganze Programm muss so geändert werden, dass erstmal nur lokale
-Variablen gesetzt werden, und erst mit dem Aufruf der Berechnung die
-wirklichen Variablen gesetzt werden.
+BUGS:
+=====
+* Get_Min_Amount and Get_Max_Amount return wrong values.
+* make_h doesn't work properly.
 
-Grund: Eigentlich muss das Jahr als erstes gesetzt werden, sonst
-stimmen alle anderen Variablen nicht. Das kann man aber keinem User
-zumuten. Der User muss die Möglichkeit haben, die Variablen in
-beliebiger Reihenfolge zu setzen.
-
-Vielleicht kann ich bei der Gelegenheit gleich die beiden Routinen zur
-Berechnung rauswerfen, bzw. nur intern verwenden.
+TODO:
+=====
+* Remove Calc_Lst and Calc_Est.
+* Allow the user to set the year after other parameters.

@@ -1,16 +1,15 @@
-# ------------------------------------------------------------------
+####################################################################
 # LibOpenSteuer - An open-source taxlibrary based on german tax laws
-# ------------------------------------------------------------------
+####################################################################
 
 # This is the Makefile for the Documentation-files.
 
-# ------------------------------------------------------------------
+####################################################################
 # Don't make any changes here until you know what you're doing.
 # Changes should only be made to the Makefile in the main dir.
-# ------------------------------------------------------------------
 # Don't compile directly from here. Paths will probably be wrong.
 # Use the Makefile in the main directory for compiling/installation.
-# ------------------------------------------------------------------
+####################################################################
 
 MAN3_PAGES = *.3
 

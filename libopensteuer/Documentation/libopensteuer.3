@@ -1,31 +1,36 @@
-.TH LIBOPENSTEUER 3 "March 2004" "Version 2004-1" \
-"A taxlibrary for Germany"
+.TH LIBOPENSTEUER 3 "October 2004" "Version 2004-2" "A taxlibrary for Germany"
 .SH NAME
-libopensteuer \- A library to calculate german income tax
+libopensteuer \- A library to calculate german wage tax and income tax
 .SH SYNOPSIS
 .B -----------------------
 .br
 .B -- The Ada-Interface --
 .br
 .B -----------------------
-.PP
+.sp
 .B type General_Type is range 0 .. 2500;
 .br
 .B type Cent_Type is range 0 .. System.Max_Int;
-.PP
+.sp
+.B Parameter_Not_Defined_Error : exception;
+.sp
+.B Get_First_Year return General_Type;
+.br
+.B Get_Last_Year return General_Type;
+.br
 .BI "Set_Year (" Year " : in General_Type); "
-.PP
+.sp
 .BI "Set_ALTER1 (" ALTER1 " : in General_Type); "
 .br
-.BI "Set_HINZUR (" HINZUR " : in Ada_Cent); "
+.BI "Set_HINZUR (" HINZUR " : in Cent_Type); "
 .br
-.BI "Set_JFREIB (" JFREIB " : in Ada_Cent); "
+.BI "Set_JFREIB (" JFREIB " : in Cent_Type); "
 .br
-.BI "Set_JHINZU (" JHINZU " : in Ada_Cent); "
+.BI "Set_JHINZU (" JHINZU " : in Cent_Type); "
 .br
-.BI "Set_JRE4 (" JRE4 " : in Ada_Cent); "
+.BI "Set_JRE4 (" JRE4 " : in Cent_Type); "
 .br
-.BI "Set_JVBEZ (" JVBEZ " : in Ada_Cent); "
+.BI "Set_JVBEZ (" JVBEZ " : in Cent_Type); "
 .br
 .BI "Set_KRV (" KRV " : in General_Type); "
 .br
@@ -33,64 +38,86 @@ libopensteuer \- A library to calculate german income tax
 .br
 .BI "Set_R (" R " : in General_Type); "
 .br
-.BI "Set_RE4 (" RE4 " : in Ada_Cent); "
+.BI "Set_RE4 (" RE4 " : in Cent_Type); "
 .br
-.BI "Set_SONSTB (" SONSTB " : in Ada_Cent); "
+.BI "Set_SONSTB (" SONSTB " : in Cent_Type); "
 .br
 .BI "Set_STKL (" STKL " : in General_Type); "
 .br
-.BI "Set_VBEZ (" VBEZ " : in Ada_Cent); "
+.BI "Set_VBEZ (" VBEZ " : in Cent_Type); "
 .br
-.BI "Set_VBS (" VBS " : in Ada_Cent); "
+.BI "Set_VBS (" VBS " : in Cent_Type); "
 .br
-.BI "Set_VMT (" VMT " : in Ada_Cent); "
+.BI "Set_VMT (" VMT " : in Cent_Type); "
 .br
-.BI "Set_WFUNDF (" WFUNDF " : in Ada_Cent); "
+.BI "Set_WFUNDF (" WFUNDF " : in Cent_Type); "
 .br
 .BI "Set_ZKF (" ZKF " : in General_Type); "
 .br
-.BI "Set_ZVE (" ZVE " : in Ada_Cent); "
-.PP
-.BI "Get_BK return Ada_Cent; "
+.BI "Set_ZVE (" ZVE " : in Cent_Type); "
+.sp
+.BI "Get_BK return Cent_Type; "
 .br
-.BI "Get_BKS return Ada_Cent; "
+.BI "Get_BKS return Cent_Type; "
 .br
-.BI "Get_BKV return Ada_Cent; "
+.BI "Get_BKV return Cent_Type; "
 .br
-.BI "Get_LSTLZZ return Ada_Cent; "
+.BI "Get_LSTLZZ return Cent_Type; "
 .br
-.BI "Get_LZALOG return Ada_Cent; "
+.BI "Get_LZALOG return Cent_Type; "
 .br
-.BI "Get_LZALUG return Ada_Cent; "
+.BI "Get_LZALUG return Cent_Type; "
 .br
-.BI "Get_SOLZLZZ return Ada_Cent; "
+.BI "Get_SOLZLZZ return Cent_Type; "
 .br
-.BI "Get_SOLZS return Ada_Cent; "
+.BI "Get_SOLZS return Cent_Type; "
 .br
-.BI "Get_SOLZV return Ada_Cent; "
+.BI "Get_SOLZV return Cent_Type; "
 .br
-.BI "Get_STS return Ada_Cent; "
+.BI "Get_STS return Cent_Type; "
 .br
-.BI "Get_STV return Ada_Cent; "
-.PP
-.BI "Get_Grundtab return Ada_Cent; "
+.BI "Get_STV return Cent_Type; "
+.sp
+.BI "Get_Grundtab return Cent_Type; "
 .br
-.BI "Get_Splittab return Ada_Cent; "
-.PP
+.BI "Get_Splittab return Cent_Type; "
+.sp
 .BI "Calc_Est; "
 .br
 .BI "Calc_Lst; "
-.PP
+.sp
 .BI "Reset_All; "
+.sp
+.BI "Get_Min_Amount return Cent_Type; "
+.br
+.BI "Get_Max_Amount return Cent_Type; "
 .PP
 .B /*******************
 .br
 .B " * The C-Interface * "
 .br
 .B " *******************/ "
-.PP
+.sp
+.BI "no_error_code = 0; "
+.br
+.BI "general_error_code = -1; "
+.br
+.BI "program_error_code = -2; "
+.br
+.BI "tasking_error_code = -3; "
+.br
+.BI "storage_error_code = -4; "
+.br
+.BI "constraint_error_code = -5; "
+.br
+.BI "parameter_not_defined_error_code = -20; "
+.sp
+.BI "int get_first_year (void); "
+.br
+.BI "int get_last_year (void); "
+.br
 .BI "int set_year (int " year "); "
-.PP
+.sp
 .BI "int set_alter1 (int " alter1 "); "
 .br
 .BI "int set_hinzur (long " hinzur "); "
@@ -126,7 +153,7 @@ libopensteuer \- A library to calculate german income tax
 .BI "int set_zkf (int " zkf "); "
 .br
 .BI "int set_zve (long " zve "); "
-.PP
+.sp
 .BI "long get_bk (void); "
 .br
 .BI "long get_bks (void); "
@@ -148,25 +175,372 @@ libopensteuer \- A library to calculate german income tax
 .BI "long get_sts (void); "
 .br
 .BI "long get_stv (void); "
-.PP
+.sp
 .BI "long get_grundtab (void); "
 .br
 .BI "long get_splittab (void); "
-.PP
+.sp
 .BI "int calc_est (void); "
 .br
 .BI "int calc_lst (void); "
-.PP
+.sp
 .BI "int reset_all (void); "
+.sp
+.BI "long get_min_amount (void); "
+.br
+.BI "long get_max_amount (void); "
 .SH DESCRIPTION
 .B LibOpenSteuer
 is a library to calculate income tax based on german tax laws.
-Currently it has an interface to Ada- and C-programs. The library
-itself is written in Ada. 
+Currently it has an interface to Ada- and C-programs.  The library
+itself is written in Ada.
+.SH TYPES
+.TP
+.BI "type General_Type is range 0 .. 2500; "
+This is a general type for input and output.  The reason for using a
+general type here is, that we don't know in the main interface what the
+ranges for a specific type in a certain year are.
+.sp
+For example: in 2004 we have six tax-brackets.  So we define the type
+STKL_Type in the PAP for 2004 with a range from 1 to 6.  But we can't
+use this type in the interface as we might have three, five or seven
+tax-brackets in another year.  So we use a general type in the main
+interface and check the range in the year-specific engine.
+.sp
+This means, if you use the C-interface of libopensteuer make sure, you
+always check the return value when you set a parameter!  If you don't,
+you might get wrong results as the parameter is not set if it exceeds
+its range.  Instead the old value ist kept.  The library will not crash
+in such a case, it tells the problem by the return value.  This is a
+feature not a bug.
+.TP
+.BI "type Cent_Type is range 0 .. System.Max_Int; "
+This is a type for amounts.  The monetary unit is Euro-Cent.
+.SH EXCEPTIONS AND RETURN VALUES
+.SS
+.B EXCEPTIONS
+.TP
+.BI "Parameter_Not_Defined_Error : exception; "
+This exception is raised when a function mentioned in the interface is
+not defined for a certain year.
+.SS
+.B RETURN VALUES
+As C cannot deal with the Ada-exceptions, we convert them to return
+values.
+.TP
+.BI "no_error_code = 0; "
+No error occured, no exception was raised.
+.TP
+.BI "general_error_code = -1; "
+An unknown exception was raised.
 .PP
-The library is only useful for people concerned by german tax laws,
-which should be german speaking people normally. For this reason, most
-of the documentation is written in german.
+The following four return values correspond to the four exceptions
+predefined in the package Standard.  Consult chapter 11 in the Ada 95
+Reference Manual for a detailed description of the standard-exceptions.
+.TP
+.BI "program_error_code = -2; "
+The exception Program_Error was raised.
+.TP
+.BI "tasking_error_code = -3; "
+The exception Tasking_Error was raised.
+.TP
+.BI "storage_error_code = -4; "
+The exception Storage_Error was raised.
+.TP
+.BI "constraint_error_code = -5; "
+The exception Constraint_Error was raised.
+.PP
+Normally you should not get one of the first three standard-exceptions.
+Getting Constraint_Errors means probably that you exceeded the range of
+a parameter.  For example in 2004 we have six tax-brackets.  If you call
+Set_STKL (7) you will get a Constraint_Error resp. set_stkl (7) will
+return with constraint_error_code.
+.PP
+The following return values belong to the LibOpenSteuer-specific exceptions
+as mentioned above.
+.TP
+.BI "parameter_not_defined_error_code = -20; "
+The exception Parameter_Not_Defined_Error was raised.
+.SH USAGE
+.SS
+.B SET PARAMETERS
+.TP
+.PD 0
+.BI "Set_Year (" Year " : in General_Type); "
+.TP
+.BI "int set_year (int " year "); "
+.PD
+Set the year for which the tax shall be calculated.
+.B Note: this function has to be called first!
+If you set any other parameter before the year, the value of this
+parameter will be lost when you set a new year!  This condition is not
+userfriendly and will be changed in a further version.  By default
+.I Year
+is set to the last year for which the library is defined.
+.TP
+.PD 0
+.BI "Set_ALTER1 (" ALTER1 " : in General_Type); "
+.TP
+.BI "int set_alter1 (int " alter1 "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_HINZUR (" HINZUR " : in Cent_Type); "
+.TP
+.BI "int set_hinzur (long " hinzur "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_JFREIB (" JFREIB " : in Cent_Type); "
+.TP
+.BI "int set_jfreib (long " jfreib "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_JHINZU (" JHINZU " : in Cent_Type); "
+.TP
+.BI "int set_jhinzu (long " jhinzu "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_JRE4 (" JRE4 " : in Cent_Type); "
+.TP
+.BI "int set_jre4 (long " jre4 "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_JVBEZ (" JVBEZ " : in Cent_Type); "
+.TP
+.BI "int set_jvbez (long " jvbez "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_KRV (" KRV " : in General_Type); "
+.TP
+.BI "int set_krv (int " krv "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_LZZ (" LZZ " : in General_Type); "
+.TP
+.BI "int set_lzz (int " lzz "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_R (" R " : in General_Type); "
+.TP
+.BI "int set_r (int " r "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_RE4 (" RE4 " : in Cent_Type); "
+.TP
+.BI "int set_re4 (long " re4 "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_SONSTB (" SONSTB " : in Cent_Type); "
+.TP
+.BI "int set_sonstb (long " sonstb "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_STKL (" STKL " : in General_Type); "
+.TP
+.BI "int set_stkl (int " stkl "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_VBEZ (" VBEZ " : in Cent_Type); "
+.TP
+.BI "int set_vbez (long " vbez "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_VBS (" VBS " : in Cent_Type); "
+.TP
+.BI "int set_vbs (long " vbs "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_VMT (" VMT " : in Cent_Type); "
+.TP
+.BI "int set_vmt (long " vmt "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_WFUNDF (" WFUNDF " : in Cent_Type); "
+.TP
+.BI "int set_wfundf (long " wfundf "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_ZKF (" ZKF " : in General_Type); "
+.TP
+.BI "int set_zkf (int " zkf "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Set_ZVE (" ZVE " : in Cent_Type); "
+.TP
+.BI "int set_zve (long " zve "); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.SS
+.B WAGE TAX
+.TP
+.PD 0
+.BI "Calc_Lst; "
+.TP
+.BI "int calc_lst (void); "
+.PD
+Calculate the wages tax.  You must run this procedure/function before
+calling one of the following functions.  Otherwise you will get no
+valid result.  This condition is not userfriendly and will be changed
+in a further version.
+.TP
+.PD 0
+.BI "Get_BK return Cent_Type; "
+.TP
+.BI "long get_bk (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_BKS return Cent_Type; "
+.TP
+.BI "long get_bks (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_BKV return Cent_Type; "
+.TP
+.BI "long get_bkv (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_LSTLZZ return Cent_Type; "
+.TP
+.BI "long get_lstlzz (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_LZALOG return Cent_Type; "
+.TP
+.BI "long get_lzalog (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_LZALUG return Cent_Type; "
+.TP
+.BI "long get_lzalug (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_SOLZLZZ return Cent_Type; "
+.TP
+.BI "long get_solzlzz (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_SOLZS return Cent_Type; "
+.TP
+.BI "long get_solzs (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_SOLZV return Cent_Type; "
+.TP
+.BI "long get_solzv (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_STS return Cent_Type; "
+.TP
+.BI "long get_sts (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_STV return Cent_Type; "
+.TP
+.BI "long get_stv (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.SS
+.B INCOME TAX
+.TP
+.PD 0
+.BI "Calc_Est; "
+.TP
+.BI "int calc_est (void); "
+.PD
+Calculate the income tax.  You must run this procedure/function before
+calling one of the following functions.  Otherwise you will get no
+valid result.  This condition is not userfriendly and will be changed
+in a further version.
+.TP
+.PD 0
+.BI "Get_Grundtab return Cent_Type; "
+.TP
+.BI "long get_grundtab (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_Splittab return Cent_Type; "
+.TP
+.BI "long get_splittab (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.SS
+MISC
+.TP
+.PD 0
+.BI "Reset_All; "
+.TP
+.BI "int reset_all (void); "
+.PD
+Reset all variables to their default values.
+.TP
+.PD 0
+.BI "Get_Min_Amount return Cent_Type; "
+.TP
+.BI "long get_min_amount (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
+.TP
+.PD 0
+.BI "Get_Max_Amount return Cent_Type; "
+.TP
+.BI "long get_max_amount (void); "
+.PD
+Sorry, no description yet.  Use the source instead.
 .SH BUGS
 All known bugs are documented in the file
 .B TODO.
@@ -176,8 +550,12 @@ fixed in a later version. Before reporting any bugs, try out the
 latest available version of this library. You will find it at
 \fB<http://www.opensteuer.de>\fR.
 .SH COPYRIGHT
-Copyright (C) 2003-2004 by Hannes Birnbacher, Martin Klaiber and
+Copyright (C) 2003, 2004 by Hannes Birnbacher, Martin Klaiber and
 Sigrid Woersdoerfer.
+.SH CREDITS
+.TP
+Hilmar Preusse
+for building Debian-packages and his constant help on the developer-list.
 .SH LICENSE
 .B LibOpenSteuer
 is covered by the GNU General Public License (GPL). See the file

@@ -64,7 +64,7 @@ package LibOpenSteuer is
    -- Our Exceptions:
    
    Parameter_Not_Defined_Error : exception;
-   Parameter_Not_Defined_Error_Code : constant General_Type_C := -10;
+   Parameter_Not_Defined_Error_Code : constant General_Type_C := -20;
    pragma export (C, Parameter_Not_Defined_Error_Code, "parameter_not_defined_error_code");
    
    ------------------
