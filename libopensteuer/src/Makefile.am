@@ -1,1 +1,1 @@
-SUBDIRS = ada
+SUBDIRS = ada swig

@@ -1,3 +1,14 @@
+2003-12-22  Christian Stimming  <stimming@tuhh.de>
+
+	* src/swig/libopensteuer.i: Added module definition file for SWIG,
+	so that theoretically wrappers for many scripting languages are
+	now available. However, compiling and installing the correct
+	object files seems to be not so trivial. So far only "make test"
+	with one python module is implemented. The include path for python
+	is auto-detected by configure. TODO: If there is no python, then
+	the python code shouldn't be compiled, but currently this would
+	probably give an error.
+
 2003-12-20  Christian Stimming  <stimming@tuhh.de>
 
 	* configure.ac: Add code and optional argument for locating
