@@ -2,13 +2,9 @@
 # OpenSteuer - An open-source taxprogram based on german tax laws
 # ---------------------------------------------------------------
 
-SHELL = /bin/sh
-INSTALL = /usr/bin/install
-
-MAIN = opensteuer
-MAN_PAGE = $(MAIN).1
-
+# ---------------------------------------------------------------------
 # Edit these paths, if you want your installation in a different place:
+# ---------------------------------------------------------------------
 
 # PREFIX is the main path to the actual subdirs for our program:
 PREFIX = /usr/local
@@ -21,23 +17,42 @@ MAN_DIR = $(PREFIX)/man
 
 # MAN1_DIR is the path to the directory, where the man(1)-pages go:
 MAN1_DIR = $(MAN_DIR)/man1
-	
-all :
-	gnatmake $(MAIN) -m `gtkada-config` -cargs -O3
 
-static :
-	gnatmake $(MAIN) -m `gtkada-config --static` -cargs -O3 -bargs -static
+SHELL = /bin/sh
+INSTALL = /usr/bin/install
 
-debug :
-	gnatmake $(MAIN) -gnatafo -g -gstabs -m `gtkada-config`
+# -------------------------------
+# For internal use. Don't change:
+# -------------------------------
 
-devel :
-	gnatmake $(MAIN) -gnatafo -m `gtkada-config`
+MAIN = opensteuer
+MAIN_SOURCE_DIR = ./src/ada
 
-devel-force :
-	gnatmake $(MAIN) -gnatafo -f -m `gtkada-config`
-	
-dirs :
+MAN_PAGE = $(MAIN).1
+MAN_PAGE_DIR = ./Documentation
+
+.PHONY: all
+all:
+	cd $(MAIN_SOURCE_DIR) && $(MAKE) all
+
+.PHONY: static
+static:
+	cd $(MAIN_SOURCE_DIR) && $(MAKE) static
+
+.PHONY: debug
+debug:
+	cd $(MAIN_SOURCE_DIR) && $(MAKE) debug
+
+.PHONY: devel
+devel:
+	cd $(MAIN_SOURCE_DIR) && $(MAKE) devel
+
+.PHONY: devel-force
+devel-force:
+	cd $(MAIN_SOURCE_DIR) && $(MAKE) devel-force
+
+.PHONY: dirs
+dirs:
 	@if ! [ -d $(INSTALL_DIR) ]; then \
 	      	echo make dirs: Creating $(INSTALL_DIR); \
 		$(INSTALL) -d -m 755 $(INSTALL_DIR); \
@@ -46,10 +61,11 @@ dirs :
 	      	echo make dirs: Creating $(MAN1_DIR); \
 		$(INSTALL) -d -m 755 $(MAN1_DIR); \
 	fi
-	
-install : all
+
+.PHONY: install
+install: all
 	@echo make: Installing $(MAIN) in $(INSTALL_DIR)/$(MAIN)
-	@if ! $(INSTALL) $(MAIN) $(INSTALL_DIR)/; then \
+	@if ! $(INSTALL) $(MAIN_SOURCE_DIR)/$(MAIN) $(INSTALL_DIR)/; then \
 	    if ! [ -d $(INSTALL_DIR) ]; then \
 		echo make install: The directory $(INSTALL_DIR) does not exist.; \
 		echo make install: $(MAIN) could not be installed.; \
@@ -57,7 +73,7 @@ install : all
 	    fi; \
 	fi
 	@echo make: Installing $(MAN_PAGE) in $(MAN1_DIR)/$(MAN_PAGE)
-	@if ! $(INSTALL) -m 644 $(MAN_PAGE) $(MAN1_DIR)/; then \
+	@if ! $(INSTALL) -m 644 $(MAN_PAGE_DIR)/$(MAN_PAGE) $(MAN1_DIR)/; then \
 	    if ! [ -d $(INSTALL_DIR) ]; then \
 		echo make install: The directory $(MAN1_DIR) does not exist.; \
 		echo make install: The man-page could not be installed.; \
@@ -65,10 +81,11 @@ install : all
 	    fi; \
 	fi
 
-uninstall :
+.PHONY: uninstall
+uninstall:
 	$(RM) $(INSTALL_DIR)/$(MAIN) $(MAN1_DIR)/$(MAN_PAGE)
 
-clean : 
-	$(RM) $(MAIN) *.o *.ali debug.txt *~
-
-.PHONY : all clean debug devel devel-force dirs install static uninstall
+.PHONY: clean
+clean: 
+	cd $(MAIN_SOURCE_DIR) && $(MAKE) clean
+	$(RM) *~
