@@ -1,0 +1,72 @@
+---------------------------------------------------------------
+OpenSteuer - An open-source taxprogram based on german tax laws
+---------------------------------------------------------------
+
+Requirements:
+-------------
+
+To compile the program, you need the tools 'make' and 'install'
+which should be available on every unixlike system. You also
+need a runtime library of Gtk+, version 1.x. Gtk-2.x is not yet
+supported by OpenSteuer. This will change in a further version.
+
+Unlike most other software for unixlike systems, this program
+is not written in C or C++, but in Ada95. For an overview what
+Ada is, have a look at the file Ada95 in this directory (sorry,
+currently only in german, but the links refer mostly to sites
+written in english).
+
+To compile the Ada-sources you need:
+
+ * an Ada-compiler, GNAT for instance,
+
+ * GtkAda-1.x, a binding for Gtk-1.x.
+
+On Linux-systems both are normally part of the distribution. If
+not, you may get the sources from <http://libre.act-europe.fr>.
+
+
+To compile and install the program do:
+--------------------------------------
+
+ * copy the file opensteuer-x.y.tar.gz to a directory of your
+   wish, for instance ~/src.
+
+ * Enter this directory and unpack the tar.gz-file like this:
+   'tar -zxvf opensteuer-x.y.tar.gz'. Replace x.y by the actual
+   version.
+
+ * Enter the new directory opensteuer-x.y
+
+ * Edit the Makefile to set the paths for your installation. By
+   default the program will be installed to /usr/local/bin. The
+   man-page will go to /usr/local/man/man1. Make sure, the paths
+   are set in the environment.
+
+ * Run 'make' to compile the program.
+
+ * Run 'make install' to install it. For the default installation,
+   you have to be root to do that. If the required paths do not
+   exist, you will get a message. Type 'make dirs install' in this
+   case, if you want the paths to be automatically created.
+
+
+Important notice:
+-----------------
+
+This software is free software. It is distributed in the hope that
+it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the GNU General Public License for more details.  
+   
+You should have received a copy of the GNU General Public License 
+along with OpenSteuer; see file COPYING. If not, write to the
+
+  Free Software Foundation, Inc.
+  59 Temple Place, Suite 330 
+  Boston, MA 02111-1307
+  USA 
+
+
+Martin Klaiber <martin@opensteuer.de>

@@ -1,0 +1,32 @@
+---------------------------------------------------------------
+OpenSteuer - An open-source taxprogram based on german tax laws
+---------------------------------------------------------------
+
+OpenSteuer calculates the tax load based on german tax laws. It
+is only useful for people concerned by these laws, which should
+be german speaking people normally. For this reason, most of the
+documentation may be written in german.
+
+OpenSteuer is written in Ada95 and uses Gtk+ as a user-interface.
+See the file INSTALL about information how to install it.
+
+All known bugs are documented in the file TODO. If you find a new
+bug not mentioned there, please report it to <bugs@opensteuer.de>.
+Please do remind that the bug might already be fixed in a later
+version. Before reporting any bugs, try out the latest available
+version of OpenSteuer from <http://www.opensteuer.de>.
+
+Copyright (C) 2003 by Hannes Birnbacher, Martin Klaiber and Sigrid
+Woersdoerfer.
+
+OpenSteuer is covered by the GNU General Public License (GPL). See
+the file COPYING and the source for copying conditions.
+
+OpenSteuer is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
+
+Martin Klaiber <martin@opensteuer.de>
+	

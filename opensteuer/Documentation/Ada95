@@ -1,0 +1,63 @@
+-----------------------------------------------
+Kurze Übersicht über die Programmiersprache Ada
+-----------------------------------------------
+
+Ada ist eine Programmiersprache, die vom Verteidigungsministerium der
+USA in Auftrag gegeben wurde. Details dazu finden sich hier:
+
+  http://cs.fit.edu/~ryan/ada/ada-hist.html      
+
+Ziele der Entwicklung waren gute Lesbarkeit, Wiederverwertbarkeit und
+Sicherheit. Diese erste Version wurde Ada83 genannt:
+  
+  http://www.sei.cmu.edu/str/descriptions/ada83_body.html
+  
+Später wurde sie erweitert, so dass nun auch objektorientierte
+Programmierung möglich war:
+
+  http://www.sei.cmu.edu/str/descriptions/ada95.html
+  
+Eine gut lesbare, deutschsprachige Zusammenfassung findet sich unter:
+
+  http://www.huber-net.de/adagag.htm
+  
+Das Reference-Manual für beide Versionen findet sich z.B. unter:
+
+  http://www.adahome.com/Resources/References.html
+  
+Auf dieser Site findet sich neben vielen anderen Dokumenten und Links
+auch eine Einführung in Ada95 für C/C++ Programmierer:
+
+  http://adahome.com/Ammo/cpp2ada.html
+
+Eine recht gute Einführung, nicht nur in das Programmieren mit Ada95,
+sondern auch in das Erlernen eines guten Programmierstils, gibt es von
+John English frei im web:
+
+  http://www.it.bton.ac.uk/staff/je/adacraft/
+  
+Die Programmiersprache wurde benannt nach Ada Byron, Countess of
+Lovelace, Tochter des Dichters Lord Byron:
+
+  http://www.adahome.com/articles/1997-12/al_birthday.html
+
+Sie gilt als die erste Programmiererin der Welt, war Mitarbeiterin
+von Charles Babbage, dessen analytical engine als weltweit erster
+frei programmierer Rechner gilt:
+
+  http://www.fourmilab.ch/babbage/contents.html
+
+Einen freien Ada95-Compiler, sowie weitere Entwicklungstools gibt es
+als freie Software bei:
+
+  http://libre.act-europe.fr
+
+Weitere Infos, Ressourcen und Links zu Ada finden sich bei:
+
+  http://www.adahome.com
+  http://www.adapower.com
+  http://www.adaic.org
+  
+Viele weitere Seiten lassen sich leicht mit einer Suchmaschine finden.
+
+Martin Klaiber <martin@opensteuer.de>

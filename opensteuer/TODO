@@ -1,0 +1,28 @@
+---------------------------------------------------------------
+OpenSteuer - An open-source taxprogram based on german tax laws
+---------------------------------------------------------------
+
+
+BUGS:
+
+ * No bugs known. Keine bekannt.
+
+
+TODO:
+
+ * Geburtsjahr und Kinderfreibetrag speichern.
+
+ * Einstellungen (Ausgabe oben/unten) zentralisieren.
+
+ * In EstTab stimmt die Formatierung der Ausgabe nicht.
+
+ * Das Hauptfenster ist leer. Sollen alle Ausgaben dort erfolgen?
+
+ * GtkAda-2/UTF-8.
+
+ * Doku/Hilfe.
+
+ * FAQ oder Testprogramm für fehlende Dateien.
+ 
+ * Entpackanleitung kann aus INSTALL entfallen.
+ 
