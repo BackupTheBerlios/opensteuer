@@ -20,6 +20,10 @@ export INCLUDE_DIR = $(PREFIX)/include/libopensteuer
 # MAN3_DIR is the path to the directory, where the man(3)-pages go:
 export MAN3_DIR = $(PREFIX)/man/man3
 
+# ADALIB_DIR is where libgnat is located. Usually the last directory
+# in the Object Search Path as printed by `gnatls -v'.
+export ADALIB_DIR = /usr/lib/gcc-lib/i586-suse-linux/3.3.1/adalib
+
 # ------------------------------------------------------------
 # Programs we need for the installation. Make sure they exist:
 # ------------------------------------------------------------

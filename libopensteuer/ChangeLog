@@ -1,0 +1,16 @@
+2003-12-10  Christian Stimming  <stimming@tuhh.de>
+
+	* src/ada/libopensteuer.h: Added C header file for exported
+	functions.
+
+	* src/ada/Makefile: Added variable for gnatgcc (on my system this
+	is simply gcc). Added more required commands to build a shared
+	library that is actually usable from C, as described in the gnat
+	info manual.
+
+	* src/ada/libopensteuer.ads, src/ada/libopensteuer.adb: Added
+	functions that can be used as data setter/getter from C. Added
+	pragma Export for exporting these functions to C.
+
+	* Makefile: Added variable for ADALIB_DIR.
+
