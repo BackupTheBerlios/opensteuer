@@ -1,0 +1,32 @@
+# ------------------------------------------------------------------
+# LibOpenSteuer - An open-source taxlibrary based on german tax laws
+# ------------------------------------------------------------------
+
+# This is the Makefile for the Documentation-files.
+
+# ------------------------------------------------------------------
+# Don't make any changes here until you know what you're doing.
+# Changes should only be made to the Makefile in the main dir.
+# ------------------------------------------------------------------
+# Don't compile directly from here. Paths will probably be wrong.
+# Use the Makefile in the main directory for compiling/installation.
+# ------------------------------------------------------------------
+
+MAN3_PAGES = *.3
+
+.PHONY: man_install
+man_install:
+	@echo make: Installing $(MAN3_PAGES) in $(MAN3_DIR)
+	@if ! [ -d $(MAN3_DIR) ]; then \
+		@echo make: Creating $(MAN3_DIR); \
+		$(INSTALL) -d -m 755 $(MAN3_DIR); \
+	fi
+	$(INSTALL) -m 644 $(MAN3_PAGES) $(MAN3_DIR)/
+
+.PHONY: uninstall
+uninstall:
+	$(if $(MAN3_DIR), cd $(MAN3_DIR) && $(RM) $(MAN3_PAGES))
+
+.PHONY : clean
+clean : 
+	$(RM) *~
