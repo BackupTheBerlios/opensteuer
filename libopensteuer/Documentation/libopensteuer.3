@@ -1,20 +1,172 @@
-.TH LIBOPENSTEUER 3 "December 2003" "Version 0.1.0" \
-"A taxlibrary for germany"
+.TH LIBOPENSTEUER 3 "March 2004" "Version 2004-1" \
+"A taxlibrary for Germany"
 .SH NAME
 libopensteuer \- A library to calculate german income tax
 .SH SYNOPSIS
-See libopensteuer-ada(3) how to call the library from Ada programs, or
-libopensteuer-c(3) for C programs.
+.B -----------------------
+.br
+.B -- The Ada-Interface --
+.br
+.B -----------------------
+.PP
+.B type Ada_Integer is new Integer;
+.br
+.B type Ada_Cent is new Long_Integer;
+.PP
+.BI "Set_Year (" Year " : in Ada_Integer); "
+.PP
+.BI "Set_ALTER1 (" ALTER1 " : in Ada_Integer); "
+.br
+.BI "Set_HINZUR (" HINZUR " : in Ada_Cent); "
+.br
+.BI "Set_JFREIB (" JFREIB " : in Ada_Cent); "
+.br
+.BI "Set_JHINZU (" JHINZU " : in Ada_Cent); "
+.br
+.BI "Set_JRE4 (" JRE4 " : in Ada_Cent); "
+.br
+.BI "Set_JVBEZ (" JVBEZ " : in Ada_Cent); "
+.br
+.BI "Set_KRV (" KRV " : in Ada_Integer); "
+.br
+.BI "Set_LZZ (" LZZ " : in Ada_Integer); "
+.br
+.BI "Set_R (" R " : in Ada_Integer); "
+.br
+.BI "Set_RE4 (" RE4 " : in Ada_Cent); "
+.br
+.BI "Set_SONSTB (" SONSTB " : in Ada_Cent); "
+.br
+.BI "Set_STKL (" STKL " : in Ada_Integer); "
+.br
+.BI "Set_VBEZ (" VBEZ " : in Ada_Cent); "
+.br
+.BI "Set_VBS (" VBS " : in Ada_Cent); "
+.br
+.BI "Set_VMT (" VMT " : in Ada_Cent); "
+.br
+.BI "Set_WFUNDF (" WFUNDF " : in Ada_Cent); "
+.br
+.BI "Set_ZKF (" ZKF " : in Ada_Integer); "
+.br
+.BI "Set_ZVE (" ZVE " : in Ada_Cent); "
+.PP
+.BI "Get_BK return Ada_Cent; "
+.br
+.BI "Get_BKS return Ada_Cent; "
+.br
+.BI "Get_BKV return Ada_Cent; "
+.br
+.BI "Get_LSTLZZ return Ada_Cent; "
+.br
+.BI "Get_LZALOG return Ada_Cent; "
+.br
+.BI "Get_LZALUG return Ada_Cent; "
+.br
+.BI "Get_SOLZLZZ return Ada_Cent; "
+.br
+.BI "Get_SOLZS return Ada_Cent; "
+.br
+.BI "Get_SOLZV return Ada_Cent; "
+.br
+.BI "Get_STS return Ada_Cent; "
+.br
+.BI "Get_STV return Ada_Cent; "
+.PP
+.BI "Get_Grundtab return Ada_Cent; "
+.br
+.BI "Get_Splittab return Ada_Cent; "
+.PP
+.BI "Calc_Est; "
+.br
+.BI "Calc_Lst; "
+.PP
+.BI "Reset_All; "
+.PP
+.B /*******************
+.br
+.B " * The C-Interface * "
+.br
+.B " *******************/ "
+.PP
+.BI "int set_year (int " year "); "
+.PP
+.BI "int set_alter1 (int " alter1 "); "
+.br
+.BI "int set_hinzur (long " hinzur "); "
+.br
+.BI "int set_jfreib (long " jfreib "); "
+.br
+.BI "int set_jhinzu (long " jhinzu "); "
+.br
+.BI "int set_jre4 (long " jre4 "); "
+.br
+.BI "int set_jvbez (long " jvbez "); "
+.br
+.BI "int set_krv (int " krv "); "
+.br
+.BI "int set_lzz (int " lzz "); "
+.br
+.BI "int set_r (int " r "); "
+.br
+.BI "int set_re4 (long " re4 "); "
+.br
+.BI "int set_sonstb (long " sonstb "); "
+.br
+.BI "int set_stkl (int " stkl "); "
+.br
+.BI "int set_vbez (long " vbez "); "
+.br
+.BI "int set_vbs (long " vbs "); "
+.br
+.BI "int set_vmt (long " vmt "); "
+.br
+.BI "int set_wfundf (long " wfundf "); "
+.br
+.BI "int set_zkf (int " zkf "); "
+.br
+.BI "int set_zve (long " zve "); "
+.PP
+.BI "long get_bk (void); "
+.br
+.BI "long get_bks (void); "
+.br
+.BI "long get_bkv (void); "
+.br
+.BI "long get_lstlzz (void); "
+.br
+.BI "long get_lzalog (void); "
+.br
+.BI "long get_lzalug (void); "
+.br
+.BI "long get_solzlzz (void); "
+.br
+.BI "long get_solzs (void); "
+.br
+.BI "long get_solzv (void); "
+.br
+.BI "long get_sts (void); "
+.br
+.BI "long get_stv (void); "
+.PP
+.BI "long get_grundtab (void); "
+.br
+.BI "long get_splittab (void); "
+.PP
+.BI "int calc_est (void); "
+.br
+.BI "int calc_lst (void); "
+.PP
+.BI "int reset_all (void); "
 .SH DESCRIPTION
 .B LibOpenSteuer
 is a library to calculate income tax based on german tax laws.
-Currently it has an interface to Ada and C programs. The library
-itself is written in Ada95. 
+Currently it has an interface to Ada- and C-programs. The library
+itself is written in Ada. 
 .PP
 The library is only useful for people concerned by german tax laws,
 which should be german speaking people normally. For this reason, most
-of the documentation and all of the other libopensteuer-manpages are
-written in german.
+of the documentation is written in german.
 .SH BUGS
 All known bugs are documented in the file
 .B TODO.
@@ -24,7 +176,7 @@ fixed in a later version. Before reporting any bugs, try out the
 latest available version of this library. You will find it at
 \fB<http://www.opensteuer.de>\fR.
 .SH COPYRIGHT
-Copyright (C) 2003 by Hannes Birnbacher, Martin Klaiber and
+Copyright (C) 2003-2004 by Hannes Birnbacher, Martin Klaiber and
 Sigrid Woersdoerfer.
 .SH LICENSE
 .B LibOpenSteuer
