@@ -1,0 +1,7 @@
+2003-10-21  Christian Stimming <stimming@tuhh.de>
+
+	* src/ada/opensteuer_pap.ads: Added C export pragmas.
+
+	* src/ada/opensteuer_pap.h: As a proposal, added possible C header
+	file for when the OpenSteuer_PAP should be accessible from C as
+	well.

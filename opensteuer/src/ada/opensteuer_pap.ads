@@ -32,6 +32,7 @@
 ------------------------------------------------------------------------------
 
 with OpenSteuer_Globals; use OpenSteuer_Globals;
+with Interfaces.C;
 
 package OpenSteuer_PAP is
    
@@ -721,5 +722,21 @@ private
    ZX, ZZX, HOCH, VERGL : Euro_0;
    
    ----------------------------------------------------------------------------
+
+   ---------------------------
+   --  Export Declarations  --
+   ---------------------------
+
+   pragma Export (C, LST2002, "OpenSteuer_PAP_LST2002");
+   pragma Export (C, UPTAB02, "OpenSteuer_PAP_UPTAB02");
+   pragma Export (C, MLSTJAHR_2, "OpenSteuer_PAP_MLSTJAHR_2");
+   pragma Export (C, Reset_PAP_Eingabe, "OpenSteuer_PAP_Reset_PAP_Eingabe");
+   pragma Export (C, Reset_PAP_Intern, "OpenSteuer_PAP_Reset_PAP_Intern");
+   -- exporting procedures is easy. Concept copied from 
+   -- http://www.adapower.com/articles/howto-gdllc.html
+   -- 
+   -- FIXME: Functions to get and set the values are still needed, 
+   -- as well as  Constructor/Destructor functions.
+
    
 end OpenSteuer_PAP;
