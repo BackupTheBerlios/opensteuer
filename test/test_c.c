@@ -2,58 +2,72 @@
 #include <stdlib.h>
 #include <libopensteuer.h>
 
+/*
+ * Simple program to demonstrate how to use libopensteuer.
+ * Author: Martin Klaiber (sorry for my bad C).
+ */
+
 int main(void)
 {
-  long r, lstlzz;
+  long r, lstlzz, error_code;
   int stkl, year;
 
-  printf ("\nUnd hier das C-Programm...\n");
-  printf ("\nLohnsteuerberechnung (alle Beträge in Euro):\n");
-  for (year = get_first_year (); year <= get_last_year (); ++year)
+  printf ("\nThis is the C-program...\n");
+  printf ("\nLohnsteuer (all amounts in Euro):\n");
+  /*
+   * Error-checking by return-values is provided for every function.
+   * I just show the principle on the basis of set_year (year).
+   */
+  for (year = get_first_year () - 1; year <= get_last_year (); ++year)
     {
-      printf ("\nJahr: %d\n", year);
-      printf ("     RE4       I      II     III      IV       V      VI\n");
-      printf ("--------------------------------------------------------\n");
-      for (r = 2; r <=24; ++r)
+      printf ("\nYear: %d\n", year);
+      error_code = set_year (year);
+      if (error_code == no_error_code)
         {
-          printf ("%8ld", r * 2500);
-          for (stkl = 1; stkl <= 6; ++stkl)
+          printf ("     RE4       I      II     III      IV       V      VI\n");
+          printf ("--------------------------------------------------------\n");
+          for (r = 2; r <=24; ++r)
             {
-              reset_all ();
-              switch (set_year (year))
+              printf ("%8ld", r * 2500);
+              for (stkl = 1; stkl <= 6; ++stkl)
                 {
-                case 0 :
+                  reset_all ();
+                  set_year (year);
                   set_lzz (1);
+                  /*
+                   * The library expects all amounts in Euro-Cent.
+                   * So we multiply by 100.
+                   */
                   set_re4 (r * 250000);
                   set_stkl (stkl);
+                  /*
+                   * After all parameters are set we call the function
+                   * which calculates the Lohnsteuer.
+                   */
                   calc_lst ();
+                  /*
+                   * The same like above: the library returns Euro-Cents:
+                   */
                   lstlzz = get_lstlzz () / 100;
                   printf ("%8ld", lstlzz);
-                  break;
-                case -1 :
-                  printf (" general");
-                  break;
-                case -2 :
-                  printf (" program");
-                  break;
-                case -3 :
-                  printf ("   range");
-                  break;
-                case -10 :
-                  printf ("   undef");
-                  break;
-                default :
-                  printf (" default");
-                  break;
-                };
-            };
-          printf ("\n");
+                }
+              printf ("\n");
+            }
         }
+      else if (error_code == constraint_error_code)
+        printf ("Error: Value out of range.\n");
+      else
+        /* More elaboration could be done here */
+        printf ("Unknown error.\n");
     }
-  printf ("\nEinkommensteuerberechnung (alle Beträge in Euro):\n");
+  /*
+   * Now an example for the Einkommensteuer.  The principle is the
+   * same as above:
+   */
+  printf ("\nEinkommensteuer (all amounts in Euro):\n");
   for (year = get_first_year (); year <= get_last_year (); ++year)
     {
-      printf ("\nJahr: %d\n", year);
+      printf ("\nYear: %d\n", year);
       printf ("     ZVE        Grundtabelle    Splittingtabelle\n");
       printf ("------------------------------------------------\n");
       for (r = 1; r <=10; ++r)
