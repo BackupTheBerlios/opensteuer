@@ -1,29 +1,21 @@
 SHELL = /bin/sh
-MAIN = test_libopensteuer
 
-#LIBOPENSTEUER_DIR = /usr/local/include/libopensteuer
-LIBOPENSTEUER_DIR = ../libopensteuer/src/ada
-OST_INCLUDES = $(LIBOPENSTEUER_DIR)
-LIBOPENSTEUER_LIBDIR = $(LIBOPENSTEUER_DIR)
+INCLUDE_DIR = /usr/local/include/opensteuer
+LIB_DIR = /usr/local/lib
 
-.PHONY : all
-all : test testc
+.PHONY: run
+run: ada c
+	./test_ada
+	./test_c
 
-.PHONY : test
-test : $(MAIN)
-	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):$(LIBOPENSTEUER_LIBDIR) ./$(MAIN)
+.PHONY: ada
+ada:
+	gnatmake -I$(INCLUDE_DIR) test_ada -largs -lopensteuer
 
-$(MAIN) :
-	gnatmake -I$(OST_INCLUDES) $(MAIN) -m -cargs -O3 -largs -L$(LIBOPENSTEUER_LIBDIR) -lopensteuer
+.PHONY: c
+c:
+	gcc -Wall -o test_c test_c.c -I$(INCLUDE_DIR) -lopensteuer -lgnat
 
-.PHONY : clean
-clean : 
-	$(RM) $(MAIN) *.o *.ali *~ testc_libopensteuer
-
-.PHONY : testc
-testc: testc_libopensteuer
-	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):$(LIBOPENSTEUER_LIBDIR) ./testc_libopensteuer 10000
-
-testc_libopensteuer: testc_libopensteuer.c $(OST_INCLUDES)/libopensteuer.h
-	gcc -g -c -Wall -pedantic -Werror -I$(OST_INCLUDES) testc_libopensteuer.c
-	gcc -g -o testc_libopensteuer testc_libopensteuer.o -L$(LIBOPENSTEUER_LIBDIR) -lopensteuer #-lgnat
+.PHONY: clean
+clean: 
+	$(RM) *.o *.ali *~ test_ada test_c
