@@ -1,0 +1,13 @@
+This is the Opensteuer library to calculate the German income tax.
+
+If you got this copy directly from CVS, then you need to run this
+command first:
+  make -f Makefile.dist
+
+After that, you can build it as any usual package:
+  ./configure
+  make
+  make install
+
+Useful arguments to ./configure can be e.g.
+  ./configure --prefix=/my/preferred/prefix --enable-debug
