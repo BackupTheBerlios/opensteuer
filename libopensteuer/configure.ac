@@ -45,7 +45,12 @@ AC_PROG_LIBTOOL
 
 dnl Additionally, libtool needs some fixing because one of our 
 dnl object file names includes a tilde
-patch < libtool-tilde.patch
+#patch < libtool-tilde.patch -- this patch is only for specific libtool versions
+AC_MSG_NOTICE([Correcting libtool for tilde in filenames...])
+sed -e ['s/\([^\]\)~/\1!/g'] libtool > libtool.new
+mv libtool libtool.orig
+mv libtool.new libtool
+AC_MSG_NOTICE([done])
 
 dnl Create both shared and static libraries by libtool
 AC_ENABLE_STATIC(yes)
