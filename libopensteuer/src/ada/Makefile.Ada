@@ -13,6 +13,7 @@
 # ------------------------------------------------------------------
 
 # Filenames:
+
 MAIN = libopensteuer
 SOURCE = *.ad[bs] *.h
 
@@ -23,9 +24,10 @@ STATIC = $(MAIN).a
 ALL_LIBS = $(SHARED) $(SHARED_API) $(SHARED_VERSION) $(STATIC)
 
 # Error-Text:
+
 ERR = not set.  Run make from the main directory
 
-# Just compile:
+# Compile:
 
 .PHONY: all
 all:
@@ -38,6 +40,13 @@ debug:
 .PHONY: devel
 devel:
 	gnatmake $(MAIN) -c -fPIC -gnatafo -m
+
+# Generate $(MAIN).h:
+
+.PHONY: h
+h:
+	gnatmake make_h.adb
+	./make_h
 
 # Build the library:
 
@@ -97,5 +106,5 @@ uninstall:
 	fi
 
 .PHONY: clean
-clean: 
-	$(RM) $(MAIN) $(SHARED)* $(STATIC) *.ali *.o *~
+clean:
+	$(RM) $(MAIN) $(SHARED)* $(STATIC) *.ali *.o *.h *~

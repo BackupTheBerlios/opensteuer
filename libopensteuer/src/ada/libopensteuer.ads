@@ -10,8 +10,7 @@ package LibOpenSteuer is
    -- General_Type is a type for universal input/output beside currency
    -- amounts.  Examples would be the tax-class or the tax-year.  We need a
    -- universal type here, because we don't know at this stage which range
-   -- the concrete type in a certain year has.  So the range is limited
-   -- later in the appropriate child-package to the real range.
+   -- the concrete type in a certain year has.
    
    type General_Type is range 0 .. 2500;
    
@@ -84,9 +83,9 @@ package LibOpenSteuer is
    function Set_Year_C (Year : in General_Type_C) return General_Type_C;
    pragma export (C, Set_Year_C, "set_year");
    
-   --------------------------
-   -- Set other parameters --
-   --------------------------
+   ------------------------
+   -- Set PAP-parameters --
+   ------------------------
    
    procedure Set_ALTER1 (ALTER1 : in General_Type);
    function Set_ALTER1_C (ALTER1 : in General_Type_C) return General_Type_C;
@@ -160,9 +159,9 @@ package LibOpenSteuer is
    function Set_ZVE_C (ZVE : in Cent_Type_C) return General_Type_C;
    pragma export (C, Set_ZVE_C, "set_zve");
    
-   --------------------
-   -- Get parameters --
-   --------------------
+   ------------------------
+   -- Get PAP-parameters --
+   ------------------------
    
    function Get_BK return Cent_Type;
    function Get_BK_C return Cent_Type_C;
@@ -208,9 +207,9 @@ package LibOpenSteuer is
    function Get_STV_C return Cent_Type_C;
    pragma export (C, Get_STV_C, "get_stv");
    
-   ---------------------
-   -- Einkommensteuer --
-   ---------------------
+   -------------------------------
+   -- Calculate Einkommensteuer --
+   -------------------------------
    
    function Get_Grundtab return Cent_Type;
    function Get_Grundtab_C return Cent_Type_C;
@@ -224,9 +223,9 @@ package LibOpenSteuer is
    function Calc_Est_C return General_Type_C;
    pragma export (C, Calc_Est_C, "calc_est");
    
-   ----------------
-   -- Lohnsteuer --
-   ----------------
+   --------------------------
+   -- Calculate Lohnsteuer --
+   --------------------------
    
    procedure Calc_Lst;
    function Calc_Lst_C return General_Type_C;
@@ -240,9 +239,9 @@ package LibOpenSteuer is
    function Reset_All_C return General_Type_C;
    pragma export (C, Reset_All_C, "reset_all");
    
-   -------------------
-   -- Rechenbereich --
-   -------------------
+   ----------
+   -- Misc --
+   ----------
    
    function Get_Min_Amount return Cent_Type;
    function Get_Min_Amount_C return Cent_Type_C;

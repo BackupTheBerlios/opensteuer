@@ -5,7 +5,7 @@ with LibOpenSteuer.LstTab;
 with LibOpenSteuer.PAP;
 
 package body LibOpenSteuer is
-   
+
    -----------------
    -- Error-Codes --
    -----------------
@@ -40,7 +40,7 @@ package body LibOpenSteuer is
    begin
       return General_Type_C (Year_Type'First);
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Get_First_Year_C;
    
    function Get_Last_Year return General_Type is
@@ -52,7 +52,7 @@ package body LibOpenSteuer is
    begin
       return General_Type_C (Year_Type'Last);
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Get_Last_Year_C;
    
    procedure Set_Year (Year : General_Type) is
@@ -65,7 +65,7 @@ package body LibOpenSteuer is
       Tax_Year := Year_Type (Year);
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_Year_C;
    
    ---------
@@ -84,7 +84,7 @@ package body LibOpenSteuer is
       P.Set_ALTER1 (General_Type (ALTER1));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_ALTER1_C;
    
    procedure Set_HINZUR (HINZUR : in Cent_Type) is
@@ -97,7 +97,7 @@ package body LibOpenSteuer is
       P.Set_HINZUR (Cent_Type (HINZUR));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_HINZUR_C;
    
    procedure Set_JFREIB (JFREIB : in Cent_Type) is
@@ -110,7 +110,7 @@ package body LibOpenSteuer is
       P.Set_JFREIB (Cent_Type (JFREIB));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_JFREIB_C;
    
    procedure Set_JHINZU (JHINZU : in Cent_Type) is
@@ -123,7 +123,7 @@ package body LibOpenSteuer is
       P.Set_JHINZU (Cent_Type (JHINZU));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_JHINZU_C;
    
    procedure Set_JRE4 (JRE4 : in Cent_Type) is
@@ -136,7 +136,7 @@ package body LibOpenSteuer is
       P.Set_JRE4 (Cent_Type (JRE4));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_JRE4_C;
    
    procedure Set_JVBEZ (JVBEZ : in Cent_Type) is
@@ -149,7 +149,7 @@ package body LibOpenSteuer is
       P.Set_JVBEZ (Cent_Type (JVBEZ));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_JVBEZ_C;
    
    procedure Set_KRV (KRV : in General_Type) is
@@ -162,7 +162,7 @@ package body LibOpenSteuer is
       P.Set_KRV (General_Type (KRV));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_KRV_C;
    
    procedure Set_LZZ (LZZ : in General_Type) is
@@ -175,7 +175,7 @@ package body LibOpenSteuer is
       P.Set_LZZ (General_Type (LZZ));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_LZZ_C;
    
    procedure Set_R (R : in General_Type) is
@@ -188,7 +188,7 @@ package body LibOpenSteuer is
       P.Set_R (General_Type (R));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_R_C;
    
    procedure Set_RE4 (RE4 : in Cent_Type) is
@@ -201,7 +201,7 @@ package body LibOpenSteuer is
       P.Set_RE4 (Cent_Type (RE4));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_RE4_C;
    
    procedure Set_SONSTB (SONSTB : in Cent_Type) is
@@ -214,7 +214,7 @@ package body LibOpenSteuer is
       P.Set_SONSTB (Cent_Type (SONSTB));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_SONSTB_C;
    
    procedure Set_STKL (STKL : in General_Type) is
@@ -227,7 +227,7 @@ package body LibOpenSteuer is
       P.Set_STKL (General_Type (STKL));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_STKL_C;
    
    procedure Set_VBEZ (VBEZ : in Cent_Type) is
@@ -240,7 +240,7 @@ package body LibOpenSteuer is
       P.Set_VBEZ (Cent_Type (VBEZ));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_VBEZ_C;
    
    procedure Set_VBS (VBS : in Cent_Type) is
@@ -253,7 +253,7 @@ package body LibOpenSteuer is
       P.Set_VBS (Cent_Type (VBS));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_VBS_C;
    
    procedure Set_VMT (VMT : in Cent_Type) is
@@ -266,7 +266,7 @@ package body LibOpenSteuer is
       P.Set_VMT (Cent_Type (VMT));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_VMT_C;
    
    procedure Set_WFUNDF (WFUNDF : in Cent_Type) is
@@ -279,7 +279,7 @@ package body LibOpenSteuer is
       P.Set_WFUNDF (Cent_Type (WFUNDF));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_WFUNDF_C;
    
    procedure Set_ZKF (ZKF : in General_Type) is
@@ -292,7 +292,7 @@ package body LibOpenSteuer is
       P.Set_ZKF (General_Type (ZKF));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_ZKF_C;
    
    ---------
@@ -308,7 +308,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_BK);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_BK_C;
    
    function Get_BKS return Cent_Type is
@@ -320,7 +320,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_BKS);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_BKS_C;
    
    function Get_BKV return Cent_Type is
@@ -332,7 +332,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_BKV);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_BKV_C;
    
    function Get_LSTLZZ return Cent_Type is
@@ -344,7 +344,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_LSTLZZ);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_LSTLZZ_C;
    
    function Get_LZALOG return Cent_Type is
@@ -356,7 +356,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_LZALOG);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_LZALOG_C;
    
    function Get_LZALUG return Cent_Type is
@@ -368,7 +368,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_LZALUG);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_LZALUG_C;
    
    function Get_SOLZLZZ return Cent_Type is
@@ -380,7 +380,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_SOLZLZZ);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_SOLZLZZ_C;
    
    function Get_SOLZS return Cent_Type is
@@ -392,7 +392,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_SOLZS);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_SOLZS_C;
    
    function Get_SOLZV return Cent_Type is
@@ -404,7 +404,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_SOLZV);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_SOLZV_C;
    
    function Get_STS return Cent_Type is
@@ -416,7 +416,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_STS);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_STS_C;
    
    function Get_STV return Cent_Type is
@@ -428,7 +428,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_STV);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_STV_C;
    
    ---------------------
@@ -451,7 +451,7 @@ package body LibOpenSteuer is
       E.Set_ZVE (Cent_Type (ZVE));
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Set_ZVE_C;
    
    function Get_Grundtab return Cent_Type is
@@ -463,7 +463,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (E.Get_Grundtab);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_Grundtab_C;
    
    function Get_Splittab return Cent_Type is
@@ -475,7 +475,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (E.Get_Splittab);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_Splittab_C;
    
    procedure Calc_Est is
@@ -488,7 +488,7 @@ package body LibOpenSteuer is
       E.Calc_Est;
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Calc_Est_C;
    
    ----------------
@@ -507,7 +507,7 @@ package body LibOpenSteuer is
       L.Calc_Lst;
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Calc_Lst_C;
    
    -------------------
@@ -523,7 +523,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_Min_Amount);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_Min_Amount_C;
    
    function Get_Max_Amount return Cent_Type is
@@ -535,7 +535,7 @@ package body LibOpenSteuer is
    begin
       return Cent_Type_C (P.Get_Max_Amount);
    exception
-            when E : others => return Cent_Type_C (Get_Error_Code (E));
+      when E : others => return Cent_Type_C (Get_Error_Code (E));
    end Get_Max_Amount_C;
    
    ---------------------
@@ -554,7 +554,7 @@ package body LibOpenSteuer is
       P.Reset_PAP_Intern;
       return No_Error_Code;
    exception
-            when E : others => return Get_Error_Code (E);
+      when E : others => return Get_Error_Code (E);
    end Reset_All_C;
    
    begin

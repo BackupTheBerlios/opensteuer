@@ -9,13 +9,13 @@ libopensteuer \- A library to calculate german income tax
 .br
 .B -----------------------
 .PP
-.B type Ada_Integer is new Integer;
+.B type General_Type is range 0 .. 2500;
 .br
-.B type Ada_Cent is new Long_Integer;
+.B type Cent_Type is range 0 .. System.Max_Int;
 .PP
-.BI "Set_Year (" Year " : in Ada_Integer); "
+.BI "Set_Year (" Year " : in General_Type); "
 .PP
-.BI "Set_ALTER1 (" ALTER1 " : in Ada_Integer); "
+.BI "Set_ALTER1 (" ALTER1 " : in General_Type); "
 .br
 .BI "Set_HINZUR (" HINZUR " : in Ada_Cent); "
 .br
@@ -27,17 +27,17 @@ libopensteuer \- A library to calculate german income tax
 .br
 .BI "Set_JVBEZ (" JVBEZ " : in Ada_Cent); "
 .br
-.BI "Set_KRV (" KRV " : in Ada_Integer); "
+.BI "Set_KRV (" KRV " : in General_Type); "
 .br
-.BI "Set_LZZ (" LZZ " : in Ada_Integer); "
+.BI "Set_LZZ (" LZZ " : in General_Type); "
 .br
-.BI "Set_R (" R " : in Ada_Integer); "
+.BI "Set_R (" R " : in General_Type); "
 .br
 .BI "Set_RE4 (" RE4 " : in Ada_Cent); "
 .br
 .BI "Set_SONSTB (" SONSTB " : in Ada_Cent); "
 .br
-.BI "Set_STKL (" STKL " : in Ada_Integer); "
+.BI "Set_STKL (" STKL " : in General_Type); "
 .br
 .BI "Set_VBEZ (" VBEZ " : in Ada_Cent); "
 .br
@@ -47,7 +47,7 @@ libopensteuer \- A library to calculate german income tax
 .br
 .BI "Set_WFUNDF (" WFUNDF " : in Ada_Cent); "
 .br
-.BI "Set_ZKF (" ZKF " : in Ada_Integer); "
+.BI "Set_ZKF (" ZKF " : in General_Type); "
 .br
 .BI "Set_ZVE (" ZVE " : in Ada_Cent); "
 .PP
