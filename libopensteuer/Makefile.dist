@@ -1,9 +1,0 @@
-default: all
-
-all:
-	#libtoolize -f --automake
-	aclocal -I macros
-	autoheader
-	automake --add-missing
-	autoconf
-	@echo "Now you can configure your package by running ./configure."

@@ -1,2 +1,0 @@
-SUBDIRS = ada $(SWIG_SRCDIR)
-DIST_SUBDIRS = ada swig
