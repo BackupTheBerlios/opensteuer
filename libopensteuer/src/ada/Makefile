@@ -20,6 +20,7 @@ SHARED_API = $(SHARED).$(API)
 SHARED_VERSION = $(SHARED_API).$(VERSION)
 STATIC = $(MAIN).a
 ALL_LIBS = $(SHARED) $(SHARED_API) $(SHARED_VERSION) $(STATIC)
+GNATGCC = gnatgcc
 
 # ---------------------
 # -- nur kompilieren --
@@ -43,7 +44,11 @@ devel :
 
 .PHONY: shared
 shared: all
-	gnatgcc -shared -Wl,-soname,$(SHARED_API) -o $(SHARED_VERSION) $(MAIN).o
+	gnatbind -L$(MAIN) $(MAIN)
+	gnatmake b~$(MAIN)
+	$(GNATGCC) -shared -Wl,-soname,$(SHARED_API) -o $(SHARED_VERSION) *.o -lgnat -L$(ADALIB_DIR)
+	ln -fs $(SHARED_VERSION) $(SHARED_API)
+	#ln -fs $(SHARED_VERSION) $(SHARED)
 
 .PHONY: shared_install
 shared_install: shared
@@ -86,7 +91,7 @@ shared_devel_install: shared_install
 		$(INSTALL) -d -m 755 $(INCLUDE_DIR); \
 	fi
 	$(INSTALL) -m 644 *.ad[bs] $(INCLUDE_DIR)
-	cd $(LIB_DIR) && $(LN) -s $(SHARED_VERSION) $(SHARED)
+	cd $(LIB_DIR) && $(LN) -s $(SHARED_VERSION) $(SHARED) && $(LN) -s $(SHARED_VERSION) $(SHARED_API)
 
 # ---------------
 # -- aufräumen --
@@ -102,4 +107,4 @@ uninstall:
 
 .PHONY : clean
 clean : 
-	$(RM) $(MAIN) $(ALL_LIBS) *.ali *.o *~
+	$(RM) $(MAIN) $(ALL_LIBS) *.ali *.o *~ b~*.*
