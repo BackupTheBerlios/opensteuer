@@ -1,0 +1,6 @@
+2003-12-10   Christian Stimming <stimming@tuhh.de>
+
+	* testc_libopensteuer.c: Added C test program. If you created
+	libopensteuer with 'make shared', then the C test program should
+	be created and run by 'make testc' here.
+
