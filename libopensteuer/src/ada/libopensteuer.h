@@ -19,7 +19,8 @@
   Ada Library to be Used in a Non-Ada Context".
 */
 
-
+#ifndef LIBOPENSTEUER_H
+#define LIBOPENSTEUER_H
 
 /* The library elaboration procedure. The implementation for this is
    created by running 'gnatbind -Llibopensteuer libopensteuer' */
@@ -69,3 +70,5 @@ extern int LibOpenSteuer_Lst_Ausgabe_Get_LSTLZZ(const Lst_Ausgabe *Arg);
 extern int LibOpenSteuer_Lst_Ausgabe_Get_SOLZLZZ(const Lst_Ausgabe *Arg);
 extern int LibOpenSteuer_Lst_Ausgabe_Get_K8(const Lst_Ausgabe *Arg);
 extern int LibOpenSteuer_Lst_Ausgabe_Get_K9(const Lst_Ausgabe *Arg);
+
+#endif /* LIBOPENSTEUER_H */
